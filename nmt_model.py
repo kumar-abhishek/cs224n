@@ -78,7 +78,7 @@ class NMT(nn.Module):
         ###         https://pytorch.org/docs/stable/nn.html#torch.nn.Dropout
         self.encoder = nn.LSTM(input_size=len(vocab.src), hidden_size=hidden_size, bidirectional=True, bias=True) #(Bidirectional LSTM with bias)
         self.decoder = nn.LSTM(input_size=len(vocab.tgt), hidden_size=hidden_size, bias=True) #(LSTM Cell with bias)
-        # self.h_projection (Linear Layer with no bias), called W_{h} in the PDF.
+        self.h_projection = nn.Linear(in_features=?, out_features=?, bias=False) #(Linear Layer with no bias), called W_{h} in the PDF.
         # self.c_projection (Linear Layer with no bias), called W_{c} in the PDF.
         # self.att_projection (Linear Layer with no bias), called W_{attProj} in the PDF.
         # self.combined_output_projection (Linear Layer with no bias), called W_{u} in the PDF.
