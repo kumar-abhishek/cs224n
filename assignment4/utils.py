@@ -33,9 +33,13 @@ def pad_sents(sents, pad_token):
     sents_padded = []
 
     ### YOUR CODE HERE (~6 Lines)
-
-
-
+    max_sentence_words=0
+    for sentence in sents:
+        max_sentence_words = max(max_sentence_words, len(sentence))
+    for sentence in sents:
+        sents_padded.append(sentence)
+    for i in range(max_sentence_words-len(sents)):
+        sents_padded.append(pad_token)
     ### END YOUR CODE
 
     return sents_padded
