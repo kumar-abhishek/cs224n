@@ -76,16 +76,14 @@ class NMT(nn.Module):
         ###         https://pytorch.org/docs/stable/nn.html#torch.nn.Linear
         ###     Dropout Layer:
         ###         https://pytorch.org/docs/stable/nn.html#torch.nn.Dropout
-
         self.encoder = nn.LSTM(input_size=len(vocab.src), hidden_size=hidden_size, bidirectional=True, bias=True) #(Bidirectional LSTM with bias)
         self.decoder = nn.LSTM(input_size=len(vocab.tgt), hidden_size=hidden_size, bias=True) #(LSTM Cell with bias)
-        self.h_projection = nn.Linear(in_features=?, out_features=?, bias=False) #(Linear Layer with no bias), called W_{h} in the PDF.
-        # self.c_projection (Linear Layer with no bias), called W_{c} in the PDF.
-        # self.att_projection (Linear Layer with no bias), called W_{attProj} in the PDF.
-        # self.combined_output_projection (Linear Layer with no bias), called W_{u} in the PDF.
-        # self.target_vocab_projection (Linear Layer with no bias), called W_{vocab} in the PDF.
-        # self.dropout (Dropout Layer)
-
+        self.h_projection = nn.Linear(in_features=self.hidden_size, out_features=2*self.hidden_size, bias=False) #(Linear Layer with no bias), called W_{h} in the PDF.
+        self.c_projection = nn.Linear(in_features=self.hidden_size, out_features=2*self.hidden_size, bias=False)#(Linear Layer with no bias), called W_{c} in the PDF.
+        self.att_projection = nn.Linear(in_features=self.hidden_size, out_features=2*self.hidden_size, bias=False)# (Linear Layer with no bias), called W_{attProj} in the PDF.
+        self.combined_output_projection = nn.Linear(in_features=self.hidden_size, out_features=3*self.hidden_size, bias=False)#((Linear Layer with no bias), called W_{u} in the PDF.
+        self.target_vocab_projection = nn.Linear(in_features=len(self.vocab.tgt), out_features=self.hidden_size, bias=False)#(Linear Layer with no bias), called W_{vocab} in the PDF.
+        self.dropout = nn.Dropout(p=0.5)#(Dropout Layer)
 
         ### END YOUR CODE
 
@@ -175,6 +173,11 @@ class NMT(nn.Module):
         ###         https://pytorch.org/docs/stable/torch.html#torch.cat
         ###     Tensor Permute:
         ###         https://pytorch.org/docs/stable/tensors.html#torch.Tensor.permute
+        """
+        Implement the encode function in nmt model.py. This function converts the padded source sentences into the tensor X, generates henc, . . . , henc, and computes the initial
+        1m state hdec and initial cell cdec for the Decoder. 
+        """
+        output, (hn, cn) = self.encoder(source_padded, ())
 
 
 
