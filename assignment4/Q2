@@ -72,3 +72,29 @@ Ans:
 Error: missed 250 in translation.
 Reason: 1 hectare = 2.471 acres; The model did not do the unit conversion from hectare to acres.
 Fix: Teach conversion to models by training on appropriate data where conversions are present.
+
+
+
+Q2(c): Blue score:
+
+i.
+Please consider this example:
+Source Sentence s: el amor todo lo puede 
+Reference Translation r1: love can always find a way 
+Reference Translation r2: love makes anything possible 
+NMT Translation c1: the love can always do
+NMT Translation c2: love can make anything possible
+
+Please compute the BLEU scores for c1 and c2. Let λi = 0.5 for i ∈ {1,2} and λi = 0 for i ∈ {3, 4} (this means we ignore 3-grams and 4-grams, i.e., don’t compute p3 or p4 ). When computing BLEU scores, show your working (i.e., show your computed values for p1, p2, len(c), len(r) and BP). Note that the BLEU scores can be expressed between 0 and 1 or between 0 and 100. The code is using the 0 to 100 scale while in this question we are using the 0 to 1 scale.
+
+Which of the two NMT translations is considered the better translation according to the BLEU Score? Do you agree that it is the better translation
+
+
+
+ii(5 points) Our hard drive was corrupted and we lost Reference Translation r2. Please recom- pute BLEU scores for c1 and c2, this time with respect to r1 only. Which of the two NMT translations now receives the higher BLEU score? Do you agree that it is the better translation? 
+
+iii(2 points) Due to data availability, NMT systems are often evaluated with respect to only a single reference translation. Please explain (in a few sentences) why this may be problematic. 
+
+iv(2 points) List two advantages and two disadvantages of BLEU, compared to human evaluation, as an evaluation metric for Machine Translation.
+
+
