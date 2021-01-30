@@ -40,3 +40,35 @@ Lots of Answers in Lecture 9(60 min mark) for Winter 2019 lectures CS224N, strat
 a. Train on a subset of vocabulary at a time.
 b. Use attention to work out what you are translating: you can do something simple like dictionary lookup
 c. Character models
+
+
+iv. (2 points) Source Sentence: Solo tienes que dar vuelta a la manzana para verlo como una epifan ́ıa.
+Reference Translation: You’ve just got to go around the block to see it as an epiphany. 
+NMT Translation: You just have to go back to the apple to see it as an epiphany.
+
+Ans:
+Error: block -> apple
+Reason: "la manzana" means "apple" as well as "city block"
+Fix: The model is not able to guess the right meaning when a word can have multiple meanings. 
+- Need to use attention to get the right context?
+- Train on a well labeled dataset with idiom phrases(or with words with multiple meanings)
+
+
+v. (2 points) Source Sentence: Ella salv ́o mi vida al permitirme entrar al ban ̃o de la sala de profesores.
+Reference Translation: She saved my life by letting me go to the bathroom in the teachers’ lounge.
+NMT Translation: She saved my life by letting me go to the bathroom in the women’s room.
+
+Ans:
+Error: teachers -> women
+Reason: Model has probably only trained on dataset with lounges belonging to either men's or women's. 
+Fix: Maybe train on more data?
+
+
+vi. (2 points) Source Sentence: Eso es ma ́s de 100,000 hect ́areas. 
+Reference Translation: That’s more than 250 thousand acres. 
+NMT Translation: That’s over 100,000 acres.
+
+Ans:
+Error: missed 250 in translation.
+Reason: 1 hectare = 2.471 acres; The model did not do the unit conversion from hectare to acres.
+Fix: Teach conversion to models by training on appropriate data where conversions are present.
