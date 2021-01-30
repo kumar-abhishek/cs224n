@@ -1,0 +1,42 @@
+Q2. Analyzing NMT Systems (30 points)
+1. Identify the error in the NMT translation.
+2. Provide possible reason(s) why the model may have made the error (either due to a specific
+linguistic construct or a specific model limitation).
+3. Describe one possible way we might alter the NMT system to fix the observed error. There
+are more than one possible fixes for an error. For example, it could be tweaking the size of the hidden layers or changing the attention mechanism.
+
+
+i. (2 points) Source Sentence: Aqu ́ı otro de mis favoritos, “La noche estrellada”. 
+Reference Translation: So another one of my favorites, “The Starry Night”. 
+NMT Translation: Here’s another favorite of my favorites, “The Starry Night”.
+
+Ans:
+1. "So another" -> "Here's another"
+2. ? 
+3. ?
+
+ii. (2 points) Source Sentence: Ustedes saben que lo que yo hago es escribir para los nin ̃os, y, de hecho, probablemente soy el autor para nin ̃os, ms ledo en los EEUU.
+Reference Translation: You know, what I do is write for children, and I’m probably America’s most widely read children’s author, in fact.
+NMT Translation: You know what I do is write for children, and in fact, I’m probably the author for children, more reading in the U.S.
+
+Ans:
+1. Error: "America’s most widely read children’s author" -> "the author for children, more reading in the U.S." 
+2. Reason for error: 
+  - " probablemente soy el autor para nin ̃os" means "I'm probably the author for kids"
+  - "ms ledo en los EEUU." means "most read in the US"
+  The NMT translated word by word without rearranging the words. 
+3. Fix: Having a Bi-LSTM layer and/or more LSTM/RNN layers would probably help
+
+
+iii. (2 points) Source Sentence: Un amigo me hizo eso – Richard Bolingbroke.
+Reference Translation: A friend of mine did that – Richard Bolingbroke.
+NMT Translation: A friend of mine did that – Richard <unk>
+
+Ans:
+1. Error: Bolingbroke -> <unk>
+2. Reason: UNKs are not being replaced with original source language words which the model doesn't understand.
+3. Fix: have a mapping maybe in the beginning to store the names before starting translation. Another one could be to add that name to the vocabulary. 
+Lots of Answers in Lecture 9(60 min mark) for Winter 2019 lectures CS224N, strategies to deal with UNKs :
+a. Train on a subset of vocabulary at a time.
+b. Use attention to work out what you are translating: you can do something simple like dictionary lookup
+c. Character models
