@@ -16,12 +16,10 @@ Ans: A convnet can capture multiple features & patterns(using multiple filters) 
 (d) (4 points) (written) In lectures we learned about both max-pooling and average-pooling. For each pooling method, please explain one advantage in comparison to the other pooling method. For each advantage, make it clear how the two contrast, and write to a similar level of detail as in the example given in the previous question.
 
 Ans: 
-Max pooling
-
+### Max pooling
 Adv: captures the strongest pattern in data
 Disadv: discard most info in the data
 
-Avg pooling
-
+### Avg pooling
 Adv: captures/preserves most of the info from data
 Disadv: strongest signals in data get diluted, but we get relatively smaller results
